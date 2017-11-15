@@ -1,0 +1,67 @@
+{{/*
+<html>
+<body>
+	<div>
+*/}}
+	</div>
+	<footer>
+		<div class="ui container">
+			<div class="ui left">
+				© Giteassss {{if (or .ShowFooterVersion .PageIsAdmin)}}{{.i18n.Tr "version"}}: {{AppVer}}{{end}} {{if ShowFooterTemplateLoadTime}}{{.i18n.Tr "page"}}: <strong>{{LoadTimes .PageStartTime}}</strong> {{.i18n.Tr "template"}}: <strong>{{call .TmplLoadTimes}}</strong>{{end}}
+			</div>
+			<div class="ui right links">
+				<div class="ui language bottom floating slide up dropdown link item">
+					<i class="world icon"></i>
+					<div class="text">{{.LangName}}</div>
+					<div class="menu">
+						{{range .AllLangs}}
+							<a class="item {{if eq $.Lang .Lang}}active selected{{end}}" href="{{if eq $.Lang .Lang}}#{{else}}{{$.Link}}?lang={{.Lang}}{{end}}">{{.Name}}</a>
+						{{end}}
+					</div>
+				</div>
+				<a href="{{AppSubUrl}}/vendor/librejs.html" data-jslicense="1">Javascript licenses</a>
+				<a href="{{AppSubUrl}}/api/swagger">API</a>
+				{{if (or .ShowFooterVersion .PageIsAdmin)}}<span class="version">{{GoVer}}</span>{{end}}
+			</div>
+		</div>
+	</footer>
+	<script src="{{AppSubUrl}}/vendor/plugins/jquery/jquery.min.js"></script>
+	<script src="{{AppSubUrl}}/vendor/plugins/jquery.areyousure/jquery.are-you-sure.js"></script>
+{{if .RequireSimpleMDE}}
+	<script src="{{AppSubUrl}}/vendor/plugins/simplemde/simplemde.min.js"></script>
+	<script src="{{AppSubUrl}}/vendor/plugins/codemirror/addon/mode/loadmode.js"></script>
+	<script src="{{AppSubUrl}}/vendor/plugins/codemirror/mode/meta.js"></script>
+	<script>
+		CodeMirror.modeURL =  "{{AppSubUrl}}/vendor/plugins/codemirror/mode/%N/%N.js";
+	</script>
+{{end}}
+{{if .RequireGitGraph}}
+	<!-- graph -->
+	<script src="{{AppSubUrl}}/vendor/plugins/gitgraph/gitgraph.js"></script>
+	<script src="{{AppSubUrl}}/js/draw.js"></script>
+{{end}}
+
+<!-- Third-party libraries -->
+{{if .RequireHighlightJS}}
+	<script src="{{AppSubUrl}}/vendor/plugins/highlight/highlight.pack.js"></script>
+{{end}}
+{{if .RequireMinicolors}}
+	<script src="{{AppSubUrl}}/vendor/plugins/jquery.minicolors/jquery.minicolors.min.js"></script>
+{{end}}
+{{if .RequireDatetimepicker}}
+	<script src="{{AppSubUrl}}/vendor/plugins/jquery.datetimepicker/jquery.datetimepicker.js"></script>
+{{end}}
+{{if .RequireDropzone}}
+	<script src="{{AppSubUrl}}/vendor/plugins/dropzone/dropzone.js"></script>
+{{end}}
+	<script src="{{AppSubUrl}}/vendor/plugins/autolink/autolink.js"></script>
+	<script src="{{AppSubUrl}}/vendor/plugins/emojify/emojify.min.js"></script>
+	<script src="{{AppSubUrl}}/vendor/plugins/clipboard/clipboard.min.js"></script>
+	<script src="{{AppSubUrl}}/vendor/plugins/vue/vue.min.js"></script>
+
+	<!-- JavaScript -->
+	<script src="{{AppSubUrl}}/vendor/plugins/semantic/semantic.min.js"></script>
+	<script src="{{AppSubUrl}}/js/index.js?v={{MD5 AppVer}}"></script>
+	<script src="{{AppSubUrl}}/js/iyo.js?v={{MD5 AppVer}}"></script>
+</body>
+</html>
