@@ -18,12 +18,12 @@
 							<input id="email" name="email" type="email" value="{{.email}}" required>
 						</div>
                         <div class="required inline field {{if and (.Err_UserName) (or (not .LinkAccountMode) (and .LinkAccountMode .LinkAccountModeRegister))}}error{{end}}">
-							<label for="user_name">{{.i18n.Tr "username"}}</label>
+							<label for="user_name">{{if .LinkAccountMode}}{{.i18n.Tr "oauth_username"}}{{else}}{{.i18n.Tr "username"}}{{end}}</label>
 							<input id="user_name" name="user_name" value="{{.user_name}}" autofocus required>
 						</div>
 
 						<div class="required inline field {{if and (.Err_Password) (or (not .LinkAccountMode) (and .LinkAccountMode .LinkAccountModeRegister))}}error{{end}}">
-							<label for="password">{{.i18n.Tr "password"}}</label>
+							<label for="password">{{if .LinkAccountMode}}{{.i18n.Tr "oauth_password"}}{{else}}{{.i18n.Tr "password"}}{{end}}</label>
 							<input id="password" name="password" type="password" value="{{.password}}" autocomplete="off" required>
 						</div>
 						<div class="required inline field {{if and (.Err_Password) (or (not .LinkAccountMode) (and .LinkAccountMode .LinkAccountModeRegister))}}error{{end}}">
@@ -43,7 +43,7 @@
 
 						<div class="inline field">
 							<label></label>
-							<button class="ui green button">{{.i18n.Tr "auth.create_new_account"}}</button>
+							<button class="ui green button">{{if .LinkAccountMode}}{{.i18n.Tr "auth.create_new_account_oauth"}}{{else}}{{.i18n.Tr "auth.create_new_account"}}{{end}}</button>
 						</div>
 
 						{{if not .LinkAccountMode}}
