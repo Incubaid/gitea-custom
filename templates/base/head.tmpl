@@ -77,6 +77,7 @@
 	<!-- Stylesheet -->
 	<link rel="stylesheet" href="{{AppSubUrl}}/vendor/plugins/semantic/semantic.min.css">
 	<link rel="stylesheet" href="{{AppSubUrl}}/css/index.css?v={{MD5 AppVer}}">
+	<link rel="stylesheet" href="{{AppSubUrl}}/css/iyo.css?v={{MD5 AppVer}}">
 	<noscript>
 		<style>
 			.dropdown:hover > .menu { display: block; }
@@ -237,7 +238,7 @@
 												<i class="octicon octicon-person"></i> {{.i18n.Tr "register"}}
 											</a>
 										{{end}}
-										<a class="item{{if .PageIsSignIn}} active{{end}}" href="{{AppSubUrl}}/user/login?redirect_to={{.Link}}">
+										<a class="item{{if .PageIsSignIn}} active{{end}}" href="{{AppSubUrl}}/user/login/oauth?redirect_to={{.Link}}">
 											<i class="octicon octicon-sign-in"></i> {{.i18n.Tr "sign_in"}}
 										</a>
 									</div><!-- end anonymous right menu -->

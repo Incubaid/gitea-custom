@@ -1,0 +1,15 @@
+{{template "base/head" .}}
+<div class="user link-account">
+	<div class="ui middle very relaxed page grid">
+		<div class="column">
+		    <br>
+		    <h2>
+                <p class="large center">
+                    {{.i18n.Tr "link_account_signin_or_signup"}}
+                </p>
+			<h2>
+		</div>
+	</div>
+</div>
+{{template "user/auth/signup_inner" .}}
+{{template "base/footer" .}}
