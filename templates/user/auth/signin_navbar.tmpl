@@ -1,14 +1,5 @@
-{{if or .EnableOpenIDSignIn (and .OrderedOAuth2Names .OAuth2Providers)}}
 <div class="ui secondary pointing tabular top attached borderless menu stackable new-menu navbar">
 	<a class="{{if .PageIsLoginOauth}}active{{end}} item" href="{{AppSubUrl}}/user/login/oauth">
 		OAUTH
 	</a>
-	<a class="{{if .PageIsLogin}}active{{end}} item" href="{{AppSubUrl}}/user/login">
-		{{.i18n.Tr "auth.login_userpass"}}
-	</a>
-	<a class="{{if .PageIsLoginOpenID}}active{{end}} item" href="{{AppSubUrl}}/user/login/openid">
-		<i class="fa fa-openid"></i>
-		&nbsp;OpenID
-	</a>
 </div>
-{{end}}

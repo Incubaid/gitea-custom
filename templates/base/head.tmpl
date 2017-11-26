@@ -233,11 +233,6 @@
 								{{else}}
 
 									<div class="right menu">
-										{{if .ShowRegistrationButton}}
-											<a class="item{{if .PageIsSignUp}} active{{end}}" href="{{AppSubUrl}}/user/sign_up">
-												<i class="octicon octicon-person"></i> {{.i18n.Tr "register"}}
-											</a>
-										{{end}}
 										<a class="item{{if .PageIsSignIn}} active{{end}}" href="{{AppSubUrl}}/user/oauth2/Itsyou.online?redirect_to={{.Link}}">
 											<i class="octicon octicon-sign-in"></i> {{.i18n.Tr "sign_in"}}
 										</a>
