@@ -25,14 +25,12 @@ Branches:
 ### Gitea custom
 Repo: https://github.com/Incubaid/gitea-custom
 
-This repo is used for gitea project management and custom layout templates
+This repo is used 
+- for gitea project management
+- custom layout templates
+- gitea management scripts
 
 ### Gitea kanban
 Repo: https://github.com/Incubaid/gitea-kanban
 
 This repo holds a kanban implementation for gitea
-
-### Gitea mgmt
-Repo: Repo: https://github.com/Incubaid/gitea-mgmt
-
-This repo holds scripts for automating management tasks to gitea
