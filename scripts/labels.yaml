@@ -1,0 +1,47 @@
+token: 81e0b69efc5a5a2d9bddbefa12d406b0521963cf
+
+labels:
+  -
+    name: priority_critical
+    color: '#b60205'
+  -
+    name: priority_major
+    color: '#f9d0c4'
+  -
+    name: priority_minor
+    color: '#f9d0c4'
+  -
+    name: process_duplicate
+    color: '#d4c5f9'
+  -
+    name: process_wontfix
+    color: '#d4c5f9'
+  -
+    name: state_inprogress
+    color: '#c2e0c6'
+  -
+    name: state_planned
+    color: '#c2e0c6'
+  -
+    name: state_question
+    color: '#c2e0c6'
+  -
+    name: state_verification
+    color: '#c2e0c6'
+  -
+    name: type_bug
+    color: '#fef2c0'
+  -
+    name: type_feature
+    color: '#fef2c0'
+  -
+    name: type_question
+    color: '#fef2c0'
+  -
+    name: type_ticket
+    color: '#fef2c0'
+
+repos:
+  -
+      name: yves_repo
+      owner: yves@vreegoebezig.be

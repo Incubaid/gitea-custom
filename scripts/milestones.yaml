@@ -1,0 +1,15 @@
+token: 81e0b69efc5a5a2d9bddbefa12d406b0521963cf
+
+milestones:
+  - 
+    title: RC2
+    due_on: "2017-12-15T15:22:43.188Z"
+    description: test 
+  - 
+    title: RC3
+    description: test 
+
+repos:
+  -
+      name: yves_repo
+      owner: yves@vreegoebezig.be
