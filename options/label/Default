@@ -1,0 +1,12 @@
+#e11d21 priority_critical
+#f6c6c7 priority_major
+#f6c6c7 priority_minor
+#d4c5f9 process_duplicate
+#d4c5f9 process_wontfix
+#bfe5bf state_inprogress
+#bfe5bf state_question
+#bfe5bf state_verification
+#fef2c0 type_bug
+#fef2c0 type_feature
+#fef2c0 type_question
+#000000 state_blocked
