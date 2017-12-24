@@ -1,0 +1,46 @@
+body {
+  font-family: "Helvetica Neue", "Meiryo Ui", "Microsoft YaHei", Arial, Helvetica, sans-serif !important;
+}
+
+.following.bar {
+  .head.link.item {
+		.dropdown.icon,
+		.menu .octicon {
+			margin-right: 5px;
+		}
+	}
+}
+
+// ensure Semantic UI .icon font family and 14px size does not apply to .icon.octicon
+.octicon.icon,
+.mega-octicon.icon {
+	font-family: octicons;
+	font-size: 16px;
+	opacity: 1 !important;
+}
+
+.following.bar .brand .ui.mini.image{
+	width: 80px;
+}
+
+
+.ui.secondary.menu .active.item{
+	color: #fff;
+	background-color: rgb(127, 179, 46);
+}
+
+.ui.blue.button, .ui.blue.buttons .button{
+	background-color: rgb(127, 179, 46);
+}
+
+.ui.blue.button:hover, .ui.blue.buttons .button:hover{
+	background-color: rgb(127, 199, 46);
+}
+
+.ui.segment.results {
+  z-index: 1;
+}
+
+.assigneesfilter{
+  padding:20px 15px
+}
