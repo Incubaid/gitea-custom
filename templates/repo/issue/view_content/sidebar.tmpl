@@ -191,5 +191,22 @@
 				</div>
 			{{end}}
 		{{end}}
+
+		<div class="ui divider"></div>
+        <div class="ui">
+            <span class="text"><strong>{{.i18n.Tr "issue_references"}}</strong></span>
+            <div>
+                {{range .References}}
+                    <div class="item">
+                        {{if eq .Type "gitea"}}
+                            <i class="fa fa-coffee"></i>
+                        {{else}}
+                            <i class="fa fa-github"></i>
+                        {{end}}
+                        <a class="item" href="{{.Url}}">{{.Title}}</a> <p style="font-size:10px">({{.Owner}} / {{.Repo}})</p>
+                    </div>
+                {{end}}
+            </div>
+        </div>
 	</div>
 </div>
