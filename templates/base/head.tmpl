@@ -153,6 +153,14 @@
 									<i class="search icon"></i>
 									</div>
 									</div>*/}}
+								{{if .IsSigned}}
+								<form class="item form left" action="{{AppSubUrl}}/search"  style="width:20%">
+                                    <div class="fluid action input">
+                                      <input name="keyword" value="{{.Keyword}}" placeholder="{{.i18n.Tr "explore.search"}} Gitea..." autofocus>
+                                      <input type="hidden" name="type" value="{{.ViewType}}"/>
+                                    </div>
+                                </form>
+                                {{end}}
 
 								{{if .IsSigned}}
 									<div class="right menu">

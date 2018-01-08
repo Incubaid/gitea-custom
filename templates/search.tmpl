@@ -1,0 +1,170 @@
+{{template "base/head" .}}
+<div class="dashboard issues">
+	<div class="ui container">
+        <form class="ui form">
+            <div class="ui fluid action input">
+              <input name="keyword" value="{{.Keyword}}" placeholder="{{.i18n.Tr "explore.search"}}..." autofocus>
+              <input type="hidden" name="type" value="{{.ViewType}}"/>
+              <button class="ui blue button">{{.i18n.Tr "explore.search"}}</button>
+            </div>
+        </form>
+        <br style="clear:both" />
+        {{ if ne .Keyword ""}}
+		<div class="ui grid">
+			<div class="four wide column">
+				<div class="ui secondary vertical filter menu">
+					<a class="{{if eq .ViewType "repositories"}}ui basic blue button{{end}} item" href="{{.Link}}?type=repositories&keyword={{.Keyword}}">
+						Repositories <strong class="ui right">{{.SearchStats.RepositoriesCount}}</strong>
+					</a>
+					<a class="{{if eq .ViewType "code"}}ui basic blue button{{end}} item" href="{{.Link}}?type=code&keyword={{.Keyword}}">
+						Code <strong class="ui right">{{.SearchStats.CodeCount}}</strong>
+					</a>
+					<a class="{{if eq .ViewType "issues"}}ui basic blue button{{end}} item" href="{{.Link}}?type=issues&keyword={{.Keyword}}">
+						Issues <strong class="ui right">{{.SearchStats.IssuesCount}}</strong>
+					</a>
+					<a class="{{if eq .ViewType "users"}}ui basic blue button{{end}} item" href="{{.Link}}?type=users&keyword={{.Keyword}}">
+						Users <strong class="ui right">{{.SearchStats.UsersCount}}</strong>
+					</a>
+					<a class="{{if eq .ViewType "organizations"}}ui basic blue button{{end}} item" href="{{.Link}}?type=organizations&keyword={{.Keyword}}">
+						Organizations <strong class="ui right">{{.SearchStats.OrganizationsCount}}</strong>
+					</a>
+				</div>
+			</div>
+			<div class="twelve wide column content">
+				<div class="issue list">
+				    {{if eq .ViewType "repositories"}}
+                        {{range .SearchResults.Repositories}}
+                            <li class="item">
+                                <a class="title has-emoji" href="{{AppSubUrl}}/{{.Owner.Name}}/{{.Name}}">{{.Name}}</a>
+                                <span class="comment ui right">{{$.i18n.Tr "repo.owner" }}: <a href="{{.Owner.HomeLink}}">{{.Owner.Name}}</a></span>
+                                <p class="desc">
+                                    {{.Description}}
+                                </p>
+                            </li>
+                        {{else}}
+                            <div>{{$.i18n.Tr "explore.repo_no_results"}}</div>
+                        {{end}}
+					{{end}}
+					{{if eq .ViewType "users"}}
+                        {{range .SearchResults.Users}}
+                            <li class="item">
+                                <img class="ui avatar image" src="{{.RelAvatarLink}}">
+                                <div class="content">
+                                    <span class="header"><a href="{{.HomeLink}}">{{.Name}}</a> {{.FullName}}</span>
+                                    <div class="description">
+                                        {{if .Location}}
+                                            <i class="octicon octicon-location"></i> {{.Location}}
+                                        {{end}}
+                                        {{if and $.ShowUserEmail .Email $.IsSigned (not .KeepEmailPrivate)}}
+                                            <i class="octicon octicon-mail"></i>
+                                            <a href="mailto:{{.Email}}" rel="nofollow">{{.Email}}</a>
+                                        {{end}}
+                                        <i class="octicon octicon-clock"></i> {{$.i18n.Tr "user.join_on"}} {{DateFmtShort .Created}}
+                                    </div>
+                                </div>
+                            </li>
+                        {{else}}
+                            <div>{{$.i18n.Tr "explore.user_no_results"}}</div>
+                        {{end}}
+					{{end}}
+					{{if eq .ViewType "organizations"}}
+                        {{range .SearchResults.Organizations}}
+                            <li class="item">
+                                <img class="ui avatar image" src="{{.RelAvatarLink}}">
+                                <div class="content">
+                                <span class="header"><a href="{{.HomeLink}}">{{.Name}}</a> {{.FullName}}</span>
+                                <div class="description">
+                                    {{if .Location}}
+                                        <i class="octicon octicon-location"></i> {{.Location}}
+                                    {{end}}
+                                    {{if and .Website}}
+                                        <i class="octicon octicon-link"></i>
+                                        <a href="{{.Website}}" rel="nofollow">{{.Website}}</a>
+                                    {{end}}
+                                    <i class="octicon octicon-clock"></i> {{$.i18n.Tr "user.join_on"}} {{DateFmtShort .Created}}
+                                </div>
+                                </div>
+                            </li>
+                        {{else}}
+                            <div>{{$.i18n.Tr "explore.org_no_results"}}</div>
+                        {{end}}
+					{{end}}
+					{{if eq .ViewType "code"}}
+                        <div class="repository search">
+                            {{range $result := .SearchResults.Code}}
+                            <div class="diff-file-box diff-box file-content non-diff-file-content repo-search-result">
+                                <h4 class="ui top attached normal header">
+                                    <span class="file">{{$result.Filename}}</span>
+                                    <a class="ui basic grey tiny button" rel="nofollow" href="{{EscapePound $result.FileURL}}">{{$.i18n.Tr "repo.diff.view_file"}}</a>
+                                </h4>
+                                <div class="ui attached table segment">
+                                    <div class="file-body file-code code-view">
+                                        <table>
+                                            <tbody>
+                                                <tr>
+                                                    <td class="lines-num">
+                                                        {{range $result.LineNumbers}}
+                                                            <a href="{{$result.FileURL}}/#L{{.}}"><span>{{.}}</span></a>
+                                                        {{end}}
+                                                    </td>
+                                                    <td class="lines-code"><pre><code>{{.FormattedLines}}</code></pre></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            {{else}}
+                            <div>{{$.i18n.Tr "repo.pulls.no_results"}}</div>
+                            {{end}}
+                        </div>
+                    {{end}}
+                    {{if eq .ViewType "issues"}}
+                        {{range .SearchResults.Issues}}
+                            {{ $timeStr:= TimeSince .Created $.Lang }}
+                            <li class="item">
+                                <div class="ui {{if .IsRead}}black{{else}}green{{end}} label">#{{.Index}}</div>
+                                <a class="title has-emoji" href="{{.Url}}">{{.Title}}</a>
+
+                                {{if .NumComments}}
+                                    <span class="comment ui right"><i class="octicon octicon-comment"></i> {{.NumComments}}</span>
+                                {{end}}
+                                <p class="desc">
+                                    {{$.i18n.Tr "repo.issues.opened_by" $timeStr .Poster.HomeLink .Poster.Name | Safe}}
+                                    {{if .Assignee}}
+                                        <a class="ui right assignee poping up" href="{{.Assignee.HomeLink}}" data-content="{{.Assignee.Name}}" data-variation="inverted" data-position="left center">
+                                            <img class="ui avatar image" src="{{.Assignee.RelAvatarLink}}">
+                                        </a>
+                                    {{end}}
+                                </p>
+                            </li>
+                        {{end}}
+                    {{end}}
+				</div>
+				{{with .Page}}
+                    {{if gt .TotalPages 1}}
+                        <div class="center page buttons">
+                            <div class="ui borderless pagination menu">
+                                <a class="{{if not .HasPrevious}}disabled{{end}} item" {{if .HasPrevious}}href="{{$.Link}}?type={{$.ViewType}}&keyword={{$.Keyword}}&page={{.Previous}}"{{end}}>
+                                    <i class="left arrow icon"></i> {{$.i18n.Tr "repo.issues.previous"}}
+                                </a>
+                                {{range .Pages}}
+                                    {{if eq .Num -1}}
+                                        <a class="disabled item">...</a>
+                                    {{else}}
+                                        <a class="{{if .IsCurrent}}active{{end}} item" {{if not .IsCurrent}}href="{{$.Link}}?type={{$.ViewType}}&keyword={{$.Keyword}}&page={{.Num}}"{{end}}>{{.Num}}</a>
+                                    {{end}}
+                                {{end}}
+                                <a class="{{if not .HasNext}}disabled{{end}} item" {{if .HasNext}}href="{{$.Link}}?type={{$.ViewType}}&keyword={{$.Keyword}}&page={{.Next}}"{{end}}>
+                                    {{$.i18n.Tr "repo.issues.next"}} <i class="icon right arrow"></i>
+                                </a>
+                            </div>
+                        </div>
+                    {{end}}
+                {{end}}
+			</div>
+		</div>
+		{{end}}
+	</div>
+</div>
+{{template "base/footer" .}}
