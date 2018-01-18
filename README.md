@@ -9,9 +9,15 @@ Get in touch with the team on telegram: https://t.me/joinchat/BjVkRRCDNTlaMbHtus
   - Itsyouonline integration for registration / login
   - Support migration from old gogs installation
 - [1.1.0 kanban](https://waffle.io/gigforks/gitea?milestone=1.1.0)
-  - Webhooks for automation on issues
-  - Issue reference overview in issue detail
-  - Full text search
+  - Introduce full text search across all repos/code/issues/users/organizations (you can access it from the navbar)
+  - Change the usernames for all users to be the first part of email address before @ and apply it automatically for new users
+  - Introduce issue references feature to summarize all issues references 
+  - Add ability to filter assignees in issue assignment
+  - Add labels template to enable auto create labels  for repos
+  - Remove password confirm for deleting organizations
+  - Old migrated wiki files can be viewed normally
+  - Fix issues listing broken results
+  - User issues can be viewed now from issues page 
 
 ## Repository structure
 
