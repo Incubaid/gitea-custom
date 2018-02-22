@@ -9,4 +9,5 @@
 #fef2c0 type_bug
 #fef2c0 type_feature
 #fef2c0 type_question
-#000000 state_blocked
+#fef2c0 type_task
+#fef2c0 type_story
