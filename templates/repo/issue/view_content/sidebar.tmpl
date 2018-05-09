@@ -76,7 +76,7 @@
 				<div class="no-select item">{{.i18n.Tr "repo.issues.new.clear_assignee"}}</div>
 				<div class="assigneesfilter"><input id="assignee-filter" autofocus placeholder="Select Assignee..." value=""></div>
 				{{range .Assignees}}
-					<div class="item" data-id="{{.ID}}" data-href="{{$.RepoLink}}/issues?assignee={{.ID}}" data-avatar="{{.RelAvatarLink}}"><img src="{{.RelAvatarLink}}"> {{.Name}}</div>
+					<div class="item" data-id="{{.ID}}" data-href="{{$.RepoLink}}/issues?assignee={{.ID}}" data-avatar="{{.RelAvatarLink}}"><img src="{{.RelAvatarLink}}"> {{.Name}} <em>({{.FullName}})<em></div>
 				{{end}}
 			</div>
 		</div>
